@@ -1,0 +1,23 @@
+{
+  "name": "shio-nodejs",
+  "version": "1.0.0",
+  "description": "Convert Shio CMS Javascript Site to NodeJS Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShioCMS/shio-nodejs.git"
+  },
+  "author": "Alexandre Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShioCMS/shio-nodejs/issues"
+  },
+  "homepage": "https://github.com/ShioCMS/shio-nodejs#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4"
+  }
+}
