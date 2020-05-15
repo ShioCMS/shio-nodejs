@@ -1,5 +1,9 @@
-exports.navigation = function (siteName, isHome) {
-    return navigationObject = [
+'use strict'
+function ShObject() {
+}
+
+ShObject.prototype.navigation = function (siteName, isHome) {
+    return [
         {
             "id": "123",
             "name": "Folder1",
@@ -11,6 +15,8 @@ exports.navigation = function (siteName, isHome) {
     ];
 };
 
-exports.generateFolderLink = function (folderId) {
+ShObject.prototype.generateFolderLink = function (folderId) {
     return "link123";
 };
+
+module.exports = ShObject;

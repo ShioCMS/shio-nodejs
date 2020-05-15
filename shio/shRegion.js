@@ -10,5 +10,6 @@ Region.prototype.render = async function (shContent, shObject) {
     var regionJS = require('../template/region/' + regionName + '/' + regionName);
     return regionJS.render(shContent, shObject, html);
 };
+
 module.exports = Region;
 
