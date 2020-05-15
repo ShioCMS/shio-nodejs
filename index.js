@@ -1,7 +1,8 @@
+'use strict'
 const express = require('express');
 const app = express();
 const port = 3000;
-const viglet_home_layout = require('./template/pageLayout/viglet_home_layout/viglet_home_layout');
+const Viglet_home_layout = require('./template/pageLayout/viglet_home_layout/viglet_home_layout');
 const handlebars = require('express-handlebars');
 const shContentObj = require('./shio/shContent');
 const shObject = require('./shio/shObject');
@@ -16,12 +17,10 @@ app.engine('hbs', handlebars({
 
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
-    viglet_home_layout.render(shContentObj.getContent(), shObject,
-        function (html) {
-            res.send(html);
-        });
-
+app.get('/', async (req, res) => {
+    var viglet_home_layout = new Viglet_home_layout();
+    var html = await viglet_home_layout.render(shContentObj.getContent(), shObject);
+    res.send(html);
 });
 
 app.listen(port, () => console.log(`http://localhost:${port}`));
