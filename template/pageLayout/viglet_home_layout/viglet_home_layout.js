@@ -1,6 +1,4 @@
 'use strict'
-const Viglet_header_region = require('../../region/viglet_header_region/viglet_header_region');
-const Viglet_footer_region = require('../../region/viglet_footer_region/viglet_footer_region');
 const Promise = require('promise');
 const Handlebars = require('handlebars');
 const fs = require('fs');
@@ -16,21 +14,13 @@ Layout.prototype.readPageLayout = async function (filePath, shContent, shObject)
 
     var promises = [];
     var cheerioEach = async function () {
-
         var shRegion = $(this);
         var regioName = shRegion.attr("sh-region").toLowerCase();
-        if (regioName === "viglet_header_region") {
-            var viglet_header_region = new Viglet_header_region();
-            var regionHTML = await viglet_header_region.render(shContent, shObject);
-            shRegion.html(regionHTML);
-            promises.push(regionHTML);
-        }
-        else if (regioName === "viglet_footer_region") {
-            var viglet_footer_region = new Viglet_footer_region();
-            var regionHTML = await viglet_footer_region.render(shContent, shObject);
-            shRegion.html(regionHTML);
-            promises.push(regionHTML);
-        };
+        var Region = require('../../region/' + regioName + '/' + regioName);
+        var region = new Region();
+        var html = await region.render(shContent, shObject);
+        shRegion.html(html);
+        promises.push(html);
     }
     $('[sh-region]').each(cheerioEach);
 
