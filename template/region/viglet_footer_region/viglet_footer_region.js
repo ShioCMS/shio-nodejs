@@ -1,17 +1,18 @@
 'use strict'
 var Handlebars = require('handlebars');
 var fs = require('fs');
+function Region() {
 
-async function renderLogic(shContent, shObject, html) {
+}
+Region.prototype.renderLogic = async function (shContent, shObject, html) {
     var template = Handlebars.compile(html);
     var html = template(shContent);
     return html;
 
 }
-
-exports.render = render;
-
-async function render(shContent, shObject) {
+Region.prototype.render = async function (shContent, shObject) {
     var data = fs.readFileSync('./template/region/viglet_footer_region/viglet_footer_region.hbs', 'utf-8');
-    return await renderLogic(shContent, shObject, data.toString());
+    return await this.renderLogic(shContent, shObject, data.toString());
 };
+module.exports = Region;
+

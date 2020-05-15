@@ -4,7 +4,7 @@ var fs = require('fs');
 function Region() {
 
 }
-Region.prototype.renderLogic = async function(shContent, shObject, html) {
+Region.prototype.renderLogic = async function (shContent, shObject, html) {
     var template = Handlebars.compile(html);
 
     var navigation = shObject.navigation("Viglet", true);
@@ -34,9 +34,9 @@ Region.prototype.renderLogic = async function(shContent, shObject, html) {
     return html;
 
 }
-Region.prototype.render = async function(shContent, shObject) {
-    var data = fs.readFileSync('./template/region/viglet_header_region/viglet_header_region.hbs', 'utf-8');    
-    return await this.renderLogic(shContent, shObject, data.toString());    
+Region.prototype.render = async function (shContent, shObject) {
+    var data = fs.readFileSync('./template/region/viglet_header_region/viglet_header_region.hbs', 'utf-8');
+    return await this.renderLogic(shContent, shObject, data.toString());
 };
 module.exports = Region;
 
