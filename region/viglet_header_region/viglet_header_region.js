@@ -1,63 +1,53 @@
-var Handlebars = require('handlebars'),
-    fs = require('fs');
+var Handlebars = require('handlebars');
+var fs = require('fs');
 
-var _html = "";
-fs.readFile('./region/viglet_header_region/viglet_header_region.hbs', 'utf-8', function (err, data) {
-    if (!err) {
-        var html = data.toString();
-        shContent = {
-            system: {
-                "id": "id",
-            }
+function render(shContent, shObject, html) {
+    var template = Handlebars.compile(html);
+
+    var navigation = shObject.navigation("Viglet", true);
+    var forEach = Array.prototype.forEach;
+    var currentFolder = new String(shContent.system.id);
+    var folders = [];
+
+    forEach.call(navigation, function (shFolder) {
+        var folderId = new String(shFolder.id);
+
+        var isCurrentFolder = false;
+
+        if (!currentFolder.localeCompare(folderId)) {
+            isCurrentFolder = true;
         }
 
-        navigationObject = [
-            {
-                "id": "123",
-                "name": "Folder1",
-            },
-            {
-                "id": "456",
-                "name": "Folder2",
-            }
-        ]
-        var template = Handlebars.compile(html);
+        var folder = {
+            "name": shFolder.name,
+            "link": shObject.generateFolderLink(shFolder.id),
+            "current": isCurrentFolder
+        }
 
-        // var navigation = shObject.navigation("Viglet", true);
-        var navigation = navigationObject;
-        var forEach = Array.prototype.forEach;
-        var currentFolder = new String(shContent.system.id);
-        var folders = [];
+        folders.push(folder);
+    });
 
-        forEach.call(navigation, function (shFolder) {
-            var folderId = new String(shFolder.id);
+    var html = template(folders);
+    return html;
 
-            var isCurrentFolder = false;
+}
 
-            if (!currentFolder.localeCompare(folderId)) {
-                isCurrentFolder = true;
-            }
+function readRegion(filePath, callback) {
+    fs.readFile(filePath, 'utf-8', function (err, data) {
+        if (!err) {
+            html = data.toString();
+            callback(html)
+        } else {
+            console.log(err);
+        }
+    });
+}
 
-            var folder = {
-                "name": shFolder.name,
-                // "link": shObject.generateFolderLink(shFolder.id),
-                "link": "link123",
-                "current": isCurrentFolder
-            }
-
-            folders.push(folder);
+exports.render = function (shContent, shObject, callback) {
+    readRegion('./region/viglet_header_region/viglet_header_region.hbs',
+        function (html) {
+            callback(render(shContent, shObject, html));
         });
 
-        var html = template(folders);
-        _html = html;
-    } else {
-        console.log(err);
-    }
-});
 
-function render() {
-    return _html;
-}
-exports.render = function () {
-    return render();
 };

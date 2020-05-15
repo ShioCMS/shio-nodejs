@@ -1,25 +1,33 @@
 const viglet_header_region = require('../../region/viglet_header_region/viglet_header_region');
-var Handlebars = require('handlebars'),
-    fs = require('fs');
+var Handlebars = require('handlebars');
+var fs = require('fs');
 
-var _html = "";
-fs.readFile('./pageLayout/viglet_home_layout/viglet_home_layout.hbs', 'utf-8', function (err, data) {
-    if (!err) {
-        var html = data.toString();
-        shContent = "shContent";
+function render(shContent, shObject, html) {
+    var template = Handlebars.compile(html);
+    var html = template(shContent);
+    return html;
 
-        var template = Handlebars.compile(html);
-        var html = template(shContent);
-        _html = html.replace("<div sh-region=\"VIGLET_HEADER_REGION\"></div>",viglet_header_region.render());
-
-    } else {
-        console.log(err);
-    }
-});
-
-function render() {
-    return _html;
 }
-exports.render = function () {
-    return render();
+
+function readPageLayout(filePath, shContent, shObject, callback) {
+    fs.readFile(filePath, 'utf-8', function (err, data) {
+        if (!err) {
+            viglet_header_region.render(shContent, shObject,
+                function (htmlRegion) {
+                    html = data.toString().replace("<div sh-region=\"VIGLET_HEADER_REGION\"></div>", htmlRegion);
+                    callback(html)
+                })
+        } else {
+            console.log(err);
+        }
+    });
+}
+
+exports.render = function (shContent, shObject, callback) {
+    readPageLayout('./pageLayout/viglet_home_layout/viglet_home_layout.hbs', shContent, shObject,
+        function (html) {
+            callback(render(shContent, shObject, html));
+        });
+
+
 };
