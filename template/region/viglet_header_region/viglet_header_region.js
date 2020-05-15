@@ -44,7 +44,7 @@ function readRegion(filePath, callback) {
 }
 
 exports.render = function (shContent, shObject, callback) {
-    readRegion('./region/viglet_header_region/viglet_header_region.hbs',
+    readRegion('./template/region/viglet_header_region/viglet_header_region.hbs',
         function (html) {
             callback(render(shContent, shObject, html));
         });

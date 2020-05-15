@@ -24,7 +24,7 @@ function readPageLayout(filePath, shContent, shObject, callback) {
 }
 
 exports.render = function (shContent, shObject, callback) {
-    readPageLayout('./pageLayout/viglet_home_layout/viglet_home_layout.hbs', shContent, shObject,
+    readPageLayout('./template/pageLayout/viglet_home_layout/viglet_home_layout.hbs', shContent, shObject,
         function (html) {
             callback(render(shContent, shObject, html));
         });
