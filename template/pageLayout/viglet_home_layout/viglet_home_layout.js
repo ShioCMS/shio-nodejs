@@ -3,6 +3,7 @@ const Promise = require('promise');
 const Handlebars = require('handlebars');
 const fs = require('fs');
 const cheerio = require('cheerio');
+const Region = require('../../../shio/shRegion');
 
 function Layout() {
 
@@ -15,9 +16,8 @@ Layout.prototype.readPageLayout = async function (filePath, shContent, shObject)
     var promises = [];
     var cheerioEach = async function () {
         var shRegion = $(this);
-        var regioName = shRegion.attr("sh-region").toLowerCase();
-        var Region = require('../../region/' + regioName + '/' + regioName);
-        var region = new Region();
+        var regionName = shRegion.attr("sh-region");
+        var region = new Region(regionName);
         var html = await region.render(shContent, shObject);
         shRegion.html(html);
         promises.push(html);
