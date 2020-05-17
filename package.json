@@ -6,11 +6,11 @@
   "scripts": {
     "start": "npm run prod",
     "build": "npm-run-all clean transpile",
-    "server": "node ./build/",
+    "server": "node ./build/lib",
     "dev": "NODE_ENV=development npm-run-all build server",
     "prod": "NODE_ENV=production npm-run-all build server",
-    "transpile": "babel ./src --out-dir build --copy-files",
-    "clean": "rimraf dist-server",
+    "transpile": "npx babel ./src --out-dir build/lib --copy-files",
+    "clean": "rimraf build/lib",
     "watch:dev": "nodemon",
     "test": "jest"
   },
@@ -52,7 +52,6 @@
   },
   "homepage": "https://github.com/ShioCMS/shio-nodejs#readme",
   "dependencies": {
-    "babel": "^6.23.0",
     "cheerio": "^1.0.0-rc.3",
     "debug": "^4.1.1",
     "express": "^4.17.1",
@@ -70,6 +69,7 @@
     "@babel/core": "^7.9.6",
     "@babel/node": "^7.8.7",
     "@babel/plugin-transform-runtime": "^7.9.6",
-    "@babel/preset-env": "^7.9.6"
+    "@babel/preset-env": "^7.9.6",
+    "babel-core": "^7.0.0-bridge.0"
   }
 }

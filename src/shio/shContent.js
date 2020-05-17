@@ -13,7 +13,7 @@ const query = `{
   `
 
 request('https://shio.viglet.net/graphql', query).then(data =>
-    console.log(data)
+    console.log(data.articles[0].id)
 )
 
 exports.getContent = function () {
