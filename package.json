@@ -11,8 +11,7 @@
     "prod": "NODE_ENV=production npm-run-all build server",
     "transpile": "npx babel ./src --out-dir build/lib --copy-files",
     "clean": "rimraf build/lib",
-    "watch:dev": "nodemon",
-    "test": "jest"
+    "watch:dev": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -46,9 +45,6 @@
         }
       ]
     ]
-  },
-  "jest": {
-    "testEnvironment": "node"
   },
   "homepage": "https://github.com/ShioCMS/shio-nodejs#readme",
   "dependencies": {
