@@ -19,7 +19,9 @@
   "homepage": "https://github.com/ShioCMS/shio-nodejs#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "debug": "^4.1.1",
     "express": "^4.17.1",
+    "handlebars": "^4.7.6",
     "promise": "^8.1.0"
   }
 }
