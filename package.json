@@ -4,8 +4,15 @@
   "description": "Convert Shio CMS Javascript Site to NodeJS Application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "npm run prod",
+    "build": "npm-run-all clean transpile",
+    "server": "node ./build/",
+    "dev": "NODE_ENV=development npm-run-all build server",
+    "prod": "NODE_ENV=production npm-run-all build server",
+    "transpile": "babel ./src --out-dir build --copy-files",
+    "clean": "rimraf dist-server",
+    "watch:dev": "nodemon",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -16,13 +23,53 @@
   "bugs": {
     "url": "https://github.com/ShioCMS/shio-nodejs/issues"
   },
+  "nodemonConfig": {
+    "exec": "npm run dev",
+    "watch": [
+      "src/*",
+      "public/*"
+    ],
+    "ignore": [
+      "**/__tests__/**",
+      "*.test.js",
+      "*.spec.js"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "esmodules": true
+          }
+        }
+      ]
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "homepage": "https://github.com/ShioCMS/shio-nodejs#readme",
   "dependencies": {
+    "babel": "^6.23.0",
     "cheerio": "^1.0.0-rc.3",
     "debug": "^4.1.1",
     "express": "^4.17.1",
+    "graphql": "^15.0.0",
+    "graphql-request": "^1.8.2",
     "handlebars": "^4.7.6",
+    "nodemon": "^2.0.4",
+    "npm-run-all": "^4.1.5",
     "promise": "^8.1.0",
-    "properties-reader": "^2.0.0"
+    "properties-reader": "^2.0.0",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.9.6"
   }
 }

@@ -30,7 +30,7 @@ PageLayout.prototype.readPageLayout = async function (filePath, shContent, shObj
 }
 
 PageLayout.prototype.render = async function (shContent, shObject) {
-    var html = await this.readPageLayout('./template/pageLayout/' + pageLayoutName + '/' + pageLayoutName + '.hbs', shContent, shObject);
+    var html = await this.readPageLayout('./src/template/pageLayout/' + pageLayoutName + '/' + pageLayoutName + '.hbs', shContent, shObject);
     var pageLayoutJS = require('../template/pageLayout/' + pageLayoutName + '/' + pageLayoutName);
     return pageLayoutJS.render(shContent, shObject, html);
 };

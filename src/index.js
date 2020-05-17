@@ -2,13 +2,14 @@
 
 const express = require('express');
 const app = express();
-const port = 3000;
 const shioDebug = require('debug')('shio:http')
 const shContentObj = require('./shio/shContent');
 const ShObject = require('./shio/shObject');
 const PageLayout = require('./shio/shPageLayout');
 const propertiesReader = require('properties-reader');
 const properties = propertiesReader('./shio.properties');
+const port = properties.get('main.app.port');
+
 app.use(express.static('public'))
 
 app.use(async function (req, res, next) {
@@ -33,4 +34,4 @@ app.use(async function (req, res, next) {
     res.send(html);
     return next();
 });
-app.listen(properties.get('main.app.port'), () => console.log(`http://localhost:${port}`));
+app.listen(port, () => console.log(`http://localhost:${port}`));
