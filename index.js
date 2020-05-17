@@ -7,7 +7,8 @@ const shioDebug = require('debug')('shio:http')
 const shContentObj = require('./shio/shContent');
 const ShObject = require('./shio/shObject');
 const PageLayout = require('./shio/shPageLayout');
-
+const propertiesReader = require('properties-reader');
+const properties = propertiesReader('./shio.properties');
 app.use(express.static('public'))
 
 app.use(async function (req, res, next) {
@@ -17,7 +18,7 @@ app.use(async function (req, res, next) {
     var siteName = urlArray[2];
     var format = urlArray[3];
     var locale = urlArray[4];
-    var objectPath = "/" + urlArray.slice(5,urlArray.length).join("/");
+    var objectPath = "/" + urlArray.slice(5, urlArray.length).join("/");
 
     shioDebug("context: " + context);
     shioDebug("siteName: " + siteName);
@@ -32,4 +33,4 @@ app.use(async function (req, res, next) {
     res.send(html);
     return next();
 });
-app.listen(port, () => console.log(`http://localhost:${port}`));
+app.listen(properties.get('main.app.port'), () => console.log(`http://localhost:${port}`));
