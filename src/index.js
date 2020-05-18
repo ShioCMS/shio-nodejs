@@ -1,14 +1,13 @@
 'use strict'
-
+import { ShPageLayout, ShObject, shContent} from '@shiocms/shio'
 const express = require('express');
+
 const app = express();
 const shioDebug = require('debug')('shio:http')
-const shContentObj = require('./shio/shContent');
-const ShObject = require('./shio/shObject');
-const PageLayout = require('./shio/shPageLayout');
 const propertiesReader = require('properties-reader');
 const properties = propertiesReader('./shio.properties');
 const port = properties.get('main.app.port');
+
 
 app.use(express.static('public'))
 
@@ -28,10 +27,11 @@ app.use(async function (req, res, next) {
     shioDebug("objectPath: " + objectPath);
 
     var pageLayoutName = 'VIGLET_HOME_LAYOUT';
-    var pageLayout = new PageLayout(pageLayoutName);
+    var pageLayout = new ShPageLayout(pageLayoutName);
     var shObject = new ShObject();
-    var html = await pageLayout.render(shContentObj.getContent(), shObject);
-    res.send(html);
+    var html = await pageLayout.render(shContent, shObject);
+    console.log(html);
+    res.send(html);    
     return next();
 });
 app.listen(port, () => console.log(`http://localhost:${port}`));
