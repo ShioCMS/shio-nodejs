@@ -1,5 +1,5 @@
 'use strict'
-import { ShPageLayout, ShObject, shContent} from '@shiocms/shio'
+import { ShPageLayout, ShObject, shContent} from '@viglet/shio'
 const express = require('express');
 
 const app = express();
