@@ -48,7 +48,7 @@
   },
   "homepage": "https://github.com/ShioCMS/shio-nodejs#readme",
   "dependencies": {
-    "@shiocms/shio": "^0.3.7-c",
+    "@viglet/shio": "^0.3.7-c",
     "cheerio": "^1.0.0-rc.3",
     "debug": "^4.1.1",
     "express": "^4.17.1",
