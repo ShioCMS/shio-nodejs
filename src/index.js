@@ -27,11 +27,10 @@ app.use(async function (req, res, next) {
     shioDebug("locale: " + locale);
     shioDebug("objectPath: " + objectPath);
 
-    var pageLayoutName = 'VIGLET_HOME_LAYOUT';
-    var pageLayout = new ShPageLayout(pageLayoutName);
+    var pageLayout = new ShPageLayout(shServer, url);
     var shObject = new ShObject();
     let shContent = new ShContent(shServer);
-    let content = await shContent.getContent("/sites/viglet/default/en-us");
+    let content = await shContent.getContent(url);
     var html = await pageLayout.render(content, shObject);
     shioDebug(html);
     res.send(html);    

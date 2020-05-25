@@ -7,3 +7,7 @@ Convert Shio CMS Javascript Site to NodeJS Application
 $ npm install -g babel-cli
 $ npm start
 ```
+
+## Tests
+http://localhost:3000/sites/viglet/default/en-us/
+http://localhost:3000/sites/viglet/default/en-us/developers/
