@@ -32,9 +32,8 @@ app.use(async function (req, res, next) {
     let shContent = new ShContent(shServer);
     let content = await shContent.getContent("/sites/viglet/default/en-us");
     var html = await pageLayout.render(content, shObject);
-    console.log(html);
-    const searchRegExp = new RegExp("=\"/store", 'g');
-    res.send(html.replace(searchRegExp,"=\"http://viglet.com/store"));    
+    shioDebug(html);
+    res.send(html);    
     return next();
 });
 app.listen(port, () => console.log(`http://localhost:${port}`));
