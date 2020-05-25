@@ -7,7 +7,8 @@ const shioDebug = require('debug')('shio:http')
 const propertiesReader = require('properties-reader');
 const properties = propertiesReader('./shio.properties');
 const port = properties.get('main.app.port');
-const shServer = new ShServer("http://localhost:2710/graphql");
+const endpoint = properties.get('main.app.shio.endpoint');
+const shServer = new ShServer(endpoint);
 
 app.use(express.static('public'))
 
