@@ -1,9 +1,8 @@
-'use strict'
-var Handlebars = require('handlebars');
-async function render(shContent, shObject, html) {
+(async () => {
+    var Handlebars = require('handlebars');
     var template = Handlebars.compile(html);
     var navigation = await shObject.navigation("Viglet", true);
-    var forEach = Array.prototype.forEachAsync;
+    var forEach = Array.prototype.forEach;
     var currentFolder = new String(shContent.system.id);
     var folders = [];
     for (const shFolder of navigation) {
@@ -19,7 +18,6 @@ async function render(shContent, shObject, html) {
         }
         folders.push(folder);
     };
-    var html = template(folders);
-    return html;
-}
-module.exports.render = render;
+    html = template(folders);
+    html;
+})()
