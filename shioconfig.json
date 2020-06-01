@@ -1,0 +1,18 @@
+{
+    "app": {
+        "port": 3000,
+        "sites": ["Viglet"],
+        "context": "sites",
+        "format": "default",
+        "locale": "en-us",
+        "hasContext": false,
+        "hasFormat": false,
+        "hasLocale": false,
+        "hasSiteName": false
+    },
+    "shioServer": {        
+        "endpoint": "http://localhost:2710/graphql",
+        "fileServer": "http://localhost:2710",
+        "token": "450b355f-3c9c-4886-bbb8-be1ccea4aa2b"
+    }
+}
