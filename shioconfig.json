@@ -1,6 +1,7 @@
 {
     "app": {
         "port": 3000,
+        "templatePath": "./src/template",
         "sites": ["Viglet"],
         "context": "sites",
         "format": "default",
