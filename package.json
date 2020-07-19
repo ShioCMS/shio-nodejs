@@ -52,7 +52,7 @@
     "cheerio": "^1.0.0-rc.3",
     "debug": "^4.1.1",
     "express": "^4.17.1",
-    "graphql": "^15.0.0",
+    "graphql": "^15.3.0",
     "graphql-request": "^1.8.2",
     "handlebars": "^4.7.6",
     "nodemon": "^2.0.4",
@@ -60,14 +60,15 @@
     "promise": "^8.1.0",
     "properties-reader": "^2.0.0",
     "rimraf": "^3.0.2",
-    "urllib": "^2.35.0"
+    "urllib": "^2.36.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.1",
-    "@babel/core": "^7.10.2",
-    "@babel/node": "^7.10.1",
-    "@babel/plugin-transform-runtime": "^7.10.1",
-    "@babel/preset-env": "^7.10.2",
-    "babel-core": "^7.0.0-bridge.0"
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "lodash": ">=4.17.19"
   }
 }
